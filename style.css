@@ -1,0 +1,39 @@
+body {
+    font-family: 'Libre Baskerville', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    text-align: center; /* Center text for all elements */
+}
+
+header {
+    margin: 20px 0; /* Add some margin above and below the header */
+}
+
+header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 48px;
+    color: #4a90e2;
+}
+
+h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 36px;
+    color: #e94e77;
+}
+
+p, ul {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    margin: 10px;
+}
+
+ul {
+    list-style-type: none; /* Remove bullet points from list */
+    padding: 0; /* Remove default padding */
+    display: inline-block; /* Allow centering of the unordered list */
+}
+
+li {
+    margin: 5px; /* Add some margin between list items */
+}
