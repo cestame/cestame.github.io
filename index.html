@@ -1,31 +1,113 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hi, i'm ame !</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font Link -->
-    <link rel="stylesheet" href="style.css"> <!-- Optional CSS file -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>c'est ame!</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>hi, i'm ame ! <br> i am a 16 yo artist and programming enthusiast!</h1>
-    </header>
-    <main>
-        <section>
-            <h2>art: </h2>
-            <p>some projects . . .</p>
-        </section>
-        <section>
-            <h2>things i'm working on . . .: </h2>
-            <ul>
-                <li><a href=" ">1</a></li>
-                <li><a href=" ">2</a></li>
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p>Contact: amy.wang2026@gmail.com</p>
+  <div class="grain"></div>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="title">c'est ame!</h1>
+      <p class="subtitle">art portfolio</p>
+      <div class="controls">
+        <label for="filter">Filter:</label>
+        <select id="filter" aria-label="Filter artworks by medium">
+          <option value="all">All</option>
+          <option value="oil">Oil</option>
+          <option value="charcoal">Charcoal</option>
+          <option value="ink">Ink</option>
+          <option value="digital">Digital</option>
+        </select>
+        <button id="shuffle">Shuffle</button>
+        <button id="ambientToggle" aria-pressed="false">Toggle Ambience</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="gallery" class="masonry" aria-live="polite">
+      <!-- Artwork cards -->
+
+      <figure class="card" data-title="Study of a Scholar" data-year="2023" data-medium="charcoal" data-desc="A quiet study of a portrait in charcoal, exploring light and texture." tabindex="0">
+        <img src="https://picsum.photos/seed/scholar/600/450" alt="Study of a Scholar — charcoal portrait" loading="lazy">
+        <figcaption>
+          <h3>Study of a Scholar</h3>
+          <small>Charcoal — 2023</small>
+        </figcaption>
+      </figure>
+
+      <figure class="card" data-title="Botanical Cabinet" data-year="2022" data-medium="ink" data-desc="Ink and wash on paper — specimens & annotations." tabindex="0">
+        <img src="https://picsum.photos/seed/botanical/600/800" alt="Botanical Cabinet — ink study" loading="lazy">
+        <figcaption>
+          <h3>Botanical Cabinet</h3>
+          <small>Ink — 2022</small>
+        </figcaption>
+      </figure>
+
+      <figure class="card" data-title="Lamp-lit Corridor" data-year="2024" data-medium="oil" data-desc="Oil on canvas — nocturne study of warm lamplight." tabindex="0">
+        <img src="https://picsum.photos/seed/corridor/600/500" alt="Lamp-lit Corridor — oil painting" loading="lazy">
+        <figcaption>
+          <h3>Lamp-lit Corridor</h3>
+          <small>Oil — 2024</small>
+        </figcaption>
+      </figure>
+
+      <figure class="card" data-title="Catalogue of Hands" data-year="2021" data-medium="digital" data-desc="Digital studies — gestures and anatomy exploration." tabindex="0">
+        <img src="https://picsum.photos/seed/hands/600/600" alt="Catalogue of Hands — digital study" loading="lazy">
+        <figcaption>
+          <h3>Catalogue of Hands</h3>
+          <small>Digital — 2021</small>
+        </figcaption>
+      </figure>
+
+      <figure class="card" data-title="Quiet Library" data-year="2020" data-medium="oil" data-desc="Oil on panel — shelves, dust motes, and afternoon light." tabindex="0">
+        <img src="https://picsum.photos/seed/library/600/700" alt="Quiet Library — oil painting" loading="lazy">
+        <figcaption>
+          <h3>Quiet Library</h3>
+          <small>Oil — 2020</small>
+        </figcaption>
+      </figure>
+
+      <figure class="card" data-title="Graphite Still Life" data-year="2025" data-medium="charcoal" data-desc="A still life study focusing on values and composition." tabindex="0">
+        <img src="https://picsum.photos/seed/stilllife/600/450" alt="Graphite Still Life — charcoal" loading="lazy">
+        <figcaption>
+          <h3>Graphite Still Life</h3>
+          <small>Charcoal — 2025</small>
+        </figcaption>
+      </figure>
+
+    </section>
+
+    <footer class="site-footer">
+      <div class="contact">
+        <p>Contact: <button id="copyEmail" data-email="hello@elysianatelier.example">hello@elysianatelier.example</button></p>
+      </div>
+      <p class="small">Built with a penchant for the melancholic and the scholarly.</p>
     </footer>
+  </main>
+
+  <!-- Modal / Lightbox -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-inner" role="dialog" aria-modal="true" aria-label="Artwork details">
+      <button class="close" aria-label="Close">✕</button>
+      <div class="modal-media"></div>
+      <div class="modal-meta">
+        <h2 class="m-title"></h2>
+        <p class="m-desc"></p>
+        <p class="m-info"></p>
+        <div class="modal-controls">
+          <button id="prev" aria-label="Previous">◀</button>
+          <button id="next" aria-label="Next">▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
