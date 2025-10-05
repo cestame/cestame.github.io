@@ -3,35 +3,54 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>c'est ame!</title>
+  <title>c'estame</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="grain"></div>
   <header class="site-header">
-    <div class="container">
-      <h1 class="title">c'est ame!</h1>
-      <p class="subtitle">art portfolio</p>
-      <div class="controls">
-        <label for="filter">Filter:</label>
-        <select id="filter" aria-label="Filter artworks by medium">
-          <option value="all">All</option>
-          <option value="oil">Oil</option>
-          <option value="charcoal">Charcoal</option>
-          <option value="ink">Ink</option>
-          <option value="digital">Digital</option>
-        </select>
-        <button id="shuffle">Shuffle</button>
-        <button id="ambientToggle" aria-pressed="false">Toggle Ambience</button>
+    <div class="container header-inner">
+      <div class="brand">
+        <h1 class="title">c'estame</h1>
+        <p class="subtitle">atelier • sketches • studies</p>
+      </div>
+      <nav class="nav">
+        <a href="#gallery">Artworks</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h2>Quiet work, slow light.</h2>
+          <p>Collections of small studies, nocturnes, and botanical inquiries. Click any image to view details.</p>
+          <a class="cta" href="#gallery">View the artwork</a>
+        </div>
+        <div class="hero-deco" aria-hidden="true"></div>
       </div>
     </div>
   </header>
 
-  <main class="container">
-    <section id="gallery" class="masonry" aria-live="polite">
+  <main>
+    <section id="gallery" class="container gallery" aria-live="polite">
+      <header class="gallery-head">
+        <h2>Works</h2>
+        <div class="gallery-controls">
+          <label for="filter">Filter</label>
+          <select id="filter" aria-label="Filter artworks by medium">
+            <option value="all">All</option>
+            <option value="oil">Oil</option>
+            <option value="charcoal">Charcoal</option>
+            <option value="ink">Ink</option>
+            <option value="digital">Digital</option>
+          </select>
+        </div>
+      </header>
       <!-- Artwork cards -->
+      <div class="masonry-grid">
 
       <figure class="card" data-title="Study of a Scholar" data-year="2023" data-medium="charcoal" data-desc="A quiet study of a portrait in charcoal, exploring light and texture." tabindex="0">
         <img src="https://picsum.photos/seed/scholar/600/450" alt="Study of a Scholar — charcoal portrait" loading="lazy">
@@ -81,15 +100,22 @@
         </figcaption>
       </figure>
 
+      </div>
+
     </section>
 
-    <footer class="site-footer">
-      <div class="contact">
-        <p>Contact: <button id="copyEmail" data-email="hello@elysianatelier.example">hello@elysianatelier.example</button></p>
-      </div>
-      <p class="small">Built with a penchant for the melancholic and the scholarly.</p>
-    </footer>
-  </main>
+      <section id="about" class="container about">
+        <h3>About</h3>
+        <p>My name online is <strong>c'estame</strong>. I make small studies and quiet pieces — ink, charcoal, and oil explorations. This site is a simple presentation designed to let the work sit in silence.</p>
+      </section>
+
+      <footer id="contact" class="site-footer container">
+        <div class="contact">
+          <p>Contact: <button id="copyEmail" data-email="hello@elysianatelier.example">hello@elysianatelier.example</button></p>
+        </div>
+        <p class="small">Built with a penchant for the melancholic and the scholarly.</p>
+      </footer>
+    </main>
 
   <!-- Modal / Lightbox -->
   <div id="modal" class="modal" aria-hidden="true">

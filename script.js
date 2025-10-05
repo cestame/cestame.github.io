@@ -1,9 +1,8 @@
 // Minimal interactive behavior for the portfolio
 (function(){
   const gallery = document.getElementById('gallery');
+  const grid = gallery.querySelector('.masonry-grid');
   const filter = document.getElementById('filter');
-  const shuffleBtn = document.getElementById('shuffle');
-  const ambientBtn = document.getElementById('ambientToggle');
   const copyEmailBtn = document.getElementById('copyEmail');
 
   const modal = document.getElementById('modal');
@@ -16,13 +15,13 @@
   const prevBtn = document.getElementById('prev');
   const nextBtn = document.getElementById('next');
 
-  let items = Array.from(gallery.querySelectorAll('.card'));
+  let items = Array.from(grid.querySelectorAll('.card'));
   let currentIndex = -1;
 
   function showIndex(i){
     if(i<0 || i>=items.length) return;
     const el = items[i];
-    const imgSrc = el.querySelector('img').src.replace(/\/(600|400)\//, '/900/');
+  const imgSrc = el.querySelector('img').src.replace(/\/(600|400|900)\//, '/900/');
     modalMedia.innerHTML = '';
     const img = document.createElement('img'); img.src = imgSrc; img.alt = el.dataset.title;
     modalMedia.appendChild(img);
@@ -78,34 +77,18 @@
 
   function filteredItems(){
     const val = filter.value;
-    if(val === 'all') return Array.from(gallery.querySelectorAll('.card'));
-    return Array.from(gallery.querySelectorAll(`.card[data-medium="${val}"]`));
+    if(val === 'all') return Array.from(grid.querySelectorAll('.card'));
+    return Array.from(grid.querySelectorAll(`.card[data-medium="${val}"]`));
   }
 
   filter.addEventListener('change', ()=>{
     const val = filter.value;
-    const all = Array.from(gallery.querySelectorAll('.card'));
+    const all = Array.from(grid.querySelectorAll('.card'));
     all.forEach(c => {
-      c.style.display = (val === 'all' || c.dataset.medium === val) ? 'inline-block' : 'none';
+      c.style.display = (val === 'all' || c.dataset.medium === val) ? 'block' : 'none';
     });
-    // reset item ordering when filtering
-    items = filteredItems();
-  });
-
-  shuffleBtn.addEventListener('click', ()=>{
-    const nodes = Array.from(gallery.querySelectorAll('.card'));
-    for(let i=nodes.length-1;i>0;i--){
-      const j=Math.floor(Math.random()*(i+1));
-      gallery.insertBefore(nodes[j], nodes[i]);
-    }
     // rebuild list
     items = filteredItems();
-  });
-
-  ambientBtn.addEventListener('click', ()=>{
-    document.body.classList.toggle('parchment');
-    const pressed = document.body.classList.contains('parchment');
-    ambientBtn.setAttribute('aria-pressed', String(pressed));
   });
 
   copyEmailBtn.addEventListener('click', async ()=>{
@@ -125,7 +108,7 @@
     const card = e.target.closest('.card');
     if(!card) return;
     const img = card.querySelector('img');
-    const hi = img.src.replace(/\/(600|400)\//,'/900/');
+    const hi = img.src.replace(/\/(600|400|900)\//,'/900/');
     const preload = new Image(); preload.src = hi;
   });
 
