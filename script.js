@@ -2,7 +2,6 @@
 (function(){
   const gallery = document.getElementById('gallery');
   const grid = gallery.querySelector('.masonry-grid');
-  const filter = document.getElementById('filter');
   const copyEmailBtn = document.getElementById('copyEmail');
 
   const modal = document.getElementById('modal');
@@ -44,7 +43,7 @@
   gallery.addEventListener('click', e => {
     const card = e.target.closest('.card');
     if(!card) return;
-    items = filteredItems();
+    items = Array.from(grid.querySelectorAll('.card'));
     const idx = items.indexOf(card);
     showIndex(idx);
   });
@@ -53,7 +52,11 @@
   gallery.addEventListener('keydown', e => {
     if(e.key === 'Enter'){
       const card = e.target.closest('.card');
-      if(card){ items = filteredItems(); const idx = items.indexOf(card); showIndex(idx); }
+      if(card){ 
+        items = Array.from(grid.querySelectorAll('.card')); 
+        const idx = items.indexOf(card); 
+        showIndex(idx); 
+      }
     }
   });
 
@@ -75,21 +78,10 @@
     }
   });
 
-  function filteredItems(){
-    const val = filter.value;
-    if(val === 'all') return Array.from(grid.querySelectorAll('.card'));
-    return Array.from(grid.querySelectorAll(`.card[data-medium="${val}"]`));
+  // Get all items without filtering
+  function getAllItems() {
+    return Array.from(grid.querySelectorAll('.card'));
   }
-
-  filter.addEventListener('change', ()=>{
-    const val = filter.value;
-    const all = Array.from(grid.querySelectorAll('.card'));
-    all.forEach(c => {
-      c.style.display = (val === 'all' || c.dataset.medium === val) ? 'block' : 'none';
-    });
-    // rebuild list
-    items = filteredItems();
-  });
 
   copyEmailBtn.addEventListener('click', async ()=>{
     const email = copyEmailBtn.dataset.email;
